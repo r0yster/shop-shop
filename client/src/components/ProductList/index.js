@@ -15,7 +15,7 @@ function ProductList() {
   const { loading, data } = useQuery(QUERY_PRODUCTS);
 
   useEffect(() => {
-    console.log(state);
+    console.log("look here --->" + state);
     if (data) {
       dispatch({
         type: UPDATE_PRODUCTS,
@@ -37,21 +37,22 @@ function ProductList() {
       <h2>Our Products:</h2>
       {state.products.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
-            <ProductItem
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
-            />
-          ))}
+            {filterProducts().map(product => (
+                <ProductItem
+                  key= {product._id}
+                  _id={product._id}
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                  quantity={product.quantity}
+                />
+            ))}
         </div>
       ) : (
         <h3>You haven't added any products yet!</h3>
       )}
-      {loading ? <img src={spinner} alt="loading" /> : null}
+      { loading ? 
+      <img src={spinner} alt="loading" />: null}
     </div>
   );
 }
