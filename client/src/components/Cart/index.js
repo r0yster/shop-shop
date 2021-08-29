@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { idbPromise } from '../../utils/helpers';
 import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
@@ -12,7 +13,11 @@ import './style.css';
 const stripePromise = loadStripe('pk_test_TYooMQauvEDq54NiTphI7jx');
 
 const Cart = () => {
-  const [state, dispatch] = useStoreContext();
+  const state = useSelector((state) => {
+    return state;
+  });
+
+  const dispatch = useDispatch();
 
   const [getCheckout, { data }] = useLazyQuery(QUERY_CHECKOUT);
 
@@ -29,6 +34,16 @@ const Cart = () => {
 
   function toggleCart() {
     dispatch({ type: TOGGLE_CART });
+  };
+  
+  if (!state.cartOpen) {
+    return (
+      <div className="cart-closed" onClick={toggleCart}>
+        <span role="img" aria-label="trash">
+          🛒
+        </span>
+      </div>
+    );
   };
 
   function calculateTotal() {
@@ -61,15 +76,6 @@ const Cart = () => {
     }
   }, [data]);
 
-  if (!state.cartOpen) {
-    return (
-      <div className="cart-closed" onClick={toggleCart}>
-        <span role="img" aria-label="trash">
-          🛒
-        </span>
-      </div>
-    );
-  };
 
   console.log(state);
 
