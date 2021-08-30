@@ -16,3 +16,4 @@ MongoDB with Mongoose ORM and Apollo Client with React front end and Redux store
 
 https://still-chamber-97893.herokuapp.com/
 
+![shop-shop-ss](https://user-images.githubusercontent.com/10663977/131277587-ee27cc9c-ce4e-4be1-8c45-5a40184039e9.PNG)
